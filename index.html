@@ -191,6 +191,13 @@ body{background:#05050c; color:var(--ink); font-family:'VT323', ui-monospace, mo
 .lbTopBtn{font-family:'Press Start 2P';font-size:8px;color:var(--ink);background:none;border:1px solid rgba(37,231,255,.2);padding:5px 9px;border-radius:4px;cursor:pointer;letter-spacing:.5px;}
 .lbTopBtn:active{opacity:.7;}
 
+/* mobile: compact buttons so 4 fit without overflow */
+@media(max-width:480px){
+  .btn{font-size:8px; padding:6px 8px; min-width:56px; box-shadow:0 2px 0 #0a3b22;}
+  .btn .d{font-size:14px;}
+  .acts{gap:5px;}
+  #actionbar{padding:5px 6px 6px; gap:4px; min-height:80px;}
+}
 /* desktop: use the bigger canvas */
 @media(min-width:820px) and (min-height:720px){
   .card{width:166px; height:240px;} .cards{min-height:250px; gap:20px;}
