@@ -191,11 +191,11 @@ body{background:#05050c; color:var(--ink); font-family:'VT323', ui-monospace, mo
 .lbTopBtn{font-family:'Press Start 2P';font-size:8px;color:var(--ink);background:none;border:1px solid rgba(37,231,255,.2);padding:5px 9px;border-radius:4px;cursor:pointer;letter-spacing:.5px;}
 .lbTopBtn:active{opacity:.7;}
 
-/* mobile: compact buttons so 4 fit without overflow */
+/* mobile: 2-column button grid so 4 buttons take 2 rows not 4 */
 @media(max-width:480px){
-  .btn{font-size:8px; padding:6px 8px; min-width:56px; box-shadow:0 2px 0 #0a3b22;}
+  .acts{display:grid; grid-template-columns:1fr 1fr; gap:5px; width:100%;}
+  .btn{font-size:8px; padding:7px 6px; min-width:0; width:100%; box-sizing:border-box;}
   .btn .d{font-size:14px;}
-  .acts{gap:5px;}
   #actionbar{padding:5px 6px 6px; gap:4px; min-height:80px;}
 }
 /* desktop: use the bigger canvas */
