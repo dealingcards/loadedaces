@@ -1,0 +1,18 @@
+{
+  "name": "Loaded Aces",
+  "short_name": "LOADED ACES",
+  "description": "A brutal 54-card deck crawler. Twelve royals. Two hands. Fifty points of armor. Kill 'em all.",
+  "start_url": "./",
+  "display": "fullscreen",
+  "orientation": "portrait",
+  "background_color": "#07060d",
+  "theme_color": "#07060d",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='60' fill='%2307060d'/><text y='370' x='256' text-anchor='middle' font-size='340' fill='%2336ff8e'>♠</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

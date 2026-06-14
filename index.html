@@ -14,6 +14,7 @@
 <title>LOADED ACES // KILL 'EM ALL</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%2307060d'/><text y='72' x='50' text-anchor='middle' font-size='64' fill='%2336ff8e'>♠</text></svg>">
 <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%2307060d'/><text y='72' x='50' text-anchor='middle' font-size='64' fill='%2336ff8e'>♠</text></svg>">
+<link rel="manifest" href="manifest.json">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
@@ -1067,6 +1068,21 @@ document.getElementById('startLbBtn').onclick=()=>{ document.getElementById('sta
 document.getElementById('endLbBtn').onclick=()=>{ document.getElementById('endOv').classList.add('hidden'); showLB(()=>document.getElementById('endOv').classList.remove('hidden')); };
 document.getElementById('lbClose').onclick=closeLB;
 document.addEventListener('gesturestart',e=>e.preventDefault());
+
+/* =============== PWA =============== */
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('./sw.js').catch(()=>{});
+}
+// iOS install hint — show once on start screen if not already installed
+const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
+const isStandalone=window.navigator.standalone===true;
+if(isIOS && !isStandalone && !localStorage.getItem('iosHintSeen')){
+  const hint=document.createElement('div');
+  hint.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0c1420;border:1px solid rgba(37,231,255,.25);border-radius:10px;padding:10px 16px;font-family:"Press Start 2P",monospace;font-size:7px;color:#25e7ff;text-align:center;z-index:70;line-height:1.8;max-width:260px;pointer-events:none;';
+  hint.innerHTML='TAP ⬆ SHARE THEN<br>"ADD TO HOME SCREEN"<br>TO INSTALL';
+  document.body.appendChild(hint);
+  setTimeout(()=>{ hint.remove(); localStorage.setItem('iosHintSeen','1'); },5000);
+}
 </script>
 </body>
 </html>
