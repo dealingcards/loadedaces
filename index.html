@@ -27,8 +27,8 @@ body{background:#05050c; color:var(--ink); font-family:'VT323', ui-monospace, mo
   mix-blend-mode:multiply; animation:flick 5s steps(60) infinite;}
 @keyframes flick{0%,97%{opacity:.5}98%{opacity:.32}100%{opacity:.5}}
 #vig{position:fixed; inset:0; z-index:41; pointer-events:none;
-  box-shadow:inset 0 0 180px 40px rgba(0,0,0,.8);
-  background:radial-gradient(130% 120% at 50% 58%, transparent 52%, rgba(0,0,0,.55));}
+  box-shadow:inset 0 0 120px 20px rgba(0,0,0,.45);
+  background:radial-gradient(130% 120% at 50% 58%, transparent 58%, rgba(0,0,0,.28));}
 #redflash{position:fixed; inset:0; z-index:36; pointer-events:none; background:radial-gradient(circle,transparent 38%,var(--blood) 140%); opacity:0;}
 #redflash.on{animation:rf .35s ease;}
 @keyframes rf{0%{opacity:.7}100%{opacity:0}}
@@ -75,8 +75,8 @@ body{background:#05050c; color:var(--ink); font-family:'VT323', ui-monospace, mo
 .roomlabel{font-family:'Press Start 2P'; font-size:10px; color:var(--plasma); text-shadow:0 0 8px var(--plasma); letter-spacing:1px; opacity:.9;}
 .cleartrack{font-family:'VT323'; font-size:20px; color:var(--amber); letter-spacing:2px; text-shadow:0 0 6px rgba(255,176,31,.5);}
 .deckcount{font-family:'Press Start 2P'; font-size:8px; color:var(--plasma); text-shadow:0 0 6px var(--plasma); letter-spacing:1px; opacity:.85;}
-.cards{display:flex; gap:14px; align-items:center; justify-content:center; min-height:212px;}
-.card{width:142px; height:206px; border-radius:9px; position:relative; cursor:pointer;
+.cards{display:flex; gap:clamp(6px,2vw,14px); align-items:center; justify-content:center; min-height:212px;}
+.card{width:clamp(88px,28vw,142px); height:clamp(128px,41vw,206px); border-radius:9px; position:relative; cursor:pointer;
   background:linear-gradient(160deg,#1e2840,#0c1019 60%,#0f1520); border:3px solid #000;
   box-shadow:0 0 0 2px var(--cardaccent,#2a3650), 0 7px 0 #000, 0 12px 28px rgba(0,0,0,.75), inset 0 1px 0 rgba(255,255,255,.06);
   transition:box-shadow .15s ease, transform .15s ease; overflow:hidden;}
@@ -91,13 +91,13 @@ body{background:#05050c; color:var(--ink); font-family:'VT323', ui-monospace, mo
 @keyframes dealin{from{transform:translateY(-46px) rotate(-6deg); opacity:0} to{transform:none; opacity:1}}
 .card:active{transform:translateY(2px);}
 .card.sel{box-shadow:0 0 0 3px var(--cardaccent), 0 0 30px 7px var(--cardaccent), 0 7px 0 #000, 0 14px 22px rgba(0,0,0,.6); transform:translateY(-6px);}
-.card .corner{position:absolute; font-family:'Press Start 2P'; font-size:14px; color:var(--cardaccent); text-shadow:0 0 6px var(--cardaccent);}
-.card .tl{top:8px; left:9px;} .card .br{bottom:8px; right:9px; transform:rotate(180deg);}
-.card .pip{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:66px; color:var(--cardaccent); text-shadow:0 0 14px var(--cardaccent);}
-.card .ctype{position:absolute; bottom:11px; left:0; right:0; text-align:center; font-family:'VT323'; font-size:17px; letter-spacing:1px; color:var(--ink); opacity:.8;}
+.card .corner{position:absolute; font-family:'Press Start 2P'; font-size:clamp(9px,2.5vw,14px); color:var(--cardaccent); text-shadow:0 0 6px var(--cardaccent);}
+.card .tl{top:6px; left:7px;} .card .br{bottom:6px; right:7px; transform:rotate(180deg);}
+.card .pip{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:clamp(40px,12vw,66px); color:var(--cardaccent); text-shadow:0 0 14px var(--cardaccent);}
+.card .ctype{position:absolute; bottom:8px; left:0; right:0; text-align:center; font-family:'VT323'; font-size:clamp(13px,3.5vw,17px); letter-spacing:1px; color:var(--ink); opacity:.8;}
 .card.royal{background:linear-gradient(160deg,#241126,#120814);}
-.card.royal .face{position:absolute; inset:34px 12px 38px; display:flex; align-items:center; justify-content:center; font-family:'Press Start 2P'; font-size:44px; color:var(--cardaccent); text-shadow:0 0 16px var(--cardaccent);}
-.card.royal .hpchip{position:absolute; top:8px; right:9px; font-family:'Press Start 2P'; font-size:11px; color:var(--blood); text-shadow:0 0 8px var(--blood);}
+.card.royal .face{position:absolute; inset:clamp(20px,5vw,34px) 12px clamp(24px,6vw,38px); display:flex; align-items:center; justify-content:center; font-family:'Press Start 2P'; font-size:clamp(26px,8vw,44px); color:var(--cardaccent); text-shadow:0 0 16px var(--cardaccent);}
+.card.royal .hpchip{position:absolute; top:6px; right:7px; font-family:'Press Start 2P'; font-size:clamp(7px,2vw,11px); color:var(--blood); text-shadow:0 0 8px var(--blood);}
 .card.gun{background:linear-gradient(160deg,#0f2230,#06121b);}
 .card.dying{animation:dying .55s ease forwards; pointer-events:none;}
 @keyframes dying{0%{transform:translateY(0)}14%{transform:translate(-6px,4px) rotate(-4deg)}28%{transform:translate(6px,-3px) rotate(4deg)}100%{transform:translateY(-260px) scale(.35) rotate(14deg); opacity:0; filter:grayscale(1)}}
@@ -105,7 +105,7 @@ body{background:#05050c; color:var(--ink); font-family:'VT323', ui-monospace, mo
 @keyframes taken{to{transform:translateY(150px) scale(.5); opacity:0}}
 .card .slash{position:absolute; inset:0; pointer-events:none; opacity:0;}
 .card.hit .slash{opacity:1; animation:slash .45s ease forwards;}
-.card .slash::before,.card .slash::after{content:"✕"; position:absolute; left:0; right:0; text-align:center; top:48px; font-family:'Press Start 2P'; color:var(--blood); font-size:44px; text-shadow:0 0 14px var(--blood);}
+.card .slash::before,.card .slash::after{content:"✕"; position:absolute; left:0; right:0; text-align:center; top:clamp(28px,8vw,48px); font-family:'Press Start 2P'; color:var(--blood); font-size:clamp(26px,8vw,44px); text-shadow:0 0 14px var(--blood);}
 @keyframes slash{0%{transform:scale(2); opacity:0}40%{opacity:1}100%{transform:scale(1); opacity:1}}
 
 #actionbar{padding:6px 8px 8px; min-height:96px; display:flex; flex-direction:column; align-items:center; gap:6px; position:relative; z-index:30; background:rgba(5,8,14,0.94); border-radius:8px; margin:0 6px 4px; border:1px solid rgba(37,231,255,.07);}
