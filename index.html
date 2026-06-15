@@ -17,7 +17,7 @@
 <link rel="manifest" href="manifest.json">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
 <style>
 :root{
   --void:#07060d; --metal:#161d2b; --steel:#243246; --steel2:#2f4360;
@@ -86,8 +86,8 @@ body{background:#05050c; color:var(--ink); font-family:'VT323', ui-monospace, mo
 .roomlabel{font-family:'Press Start 2P'; font-size:10px; color:var(--plasma); text-shadow:0 0 8px var(--plasma); letter-spacing:1px; opacity:.9;}
 .cleartrack{font-family:'VT323'; font-size:20px; color:var(--amber); letter-spacing:2px; text-shadow:0 0 6px rgba(255,176,31,.5);}
 .deckcount{font-family:'Press Start 2P'; font-size:8px; color:var(--plasma); text-shadow:0 0 6px var(--plasma); letter-spacing:1px; opacity:.85;}
-.cards{display:flex; gap:clamp(6px,2vw,14px); align-items:center; justify-content:center; min-height:212px;}
-.card{width:clamp(88px,28vw,142px); height:clamp(128px,41vw,206px); border-radius:9px; position:relative; cursor:pointer;
+.cards{display:flex; gap:clamp(6px,2vw,14px); align-items:center; justify-content:center; min-height:230px;}
+.card{width:clamp(96px,30vw,158px); height:clamp(138px,44vw,228px); border-radius:9px; position:relative; cursor:pointer;
   background:linear-gradient(160deg,#1e2840,#0c1019 60%,#0f1520); border:3px solid #000;
   box-shadow:0 0 0 2px var(--cardaccent,#2a3650), 0 7px 0 #000, 0 12px 28px rgba(0,0,0,.75), inset 0 1px 0 rgba(255,255,255,.06);
   transition:box-shadow .15s ease, transform .15s ease; overflow:hidden;}
@@ -106,8 +106,20 @@ body{background:#05050c; color:var(--ink); font-family:'VT323', ui-monospace, mo
 .card .tl{top:6px; left:7px;} .card .br{bottom:6px; right:7px; transform:rotate(180deg);}
 .card .pip{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:clamp(40px,12vw,66px); color:var(--cardaccent); text-shadow:0 0 14px var(--cardaccent);}
 .card .ctype{position:absolute; bottom:8px; left:0; right:0; text-align:center; font-family:'VT323'; font-size:clamp(13px,3.5vw,17px); letter-spacing:1px; color:var(--ink); opacity:.8;}
-.card.royal{background:linear-gradient(160deg,#241126,#120814);}
-.card.royal .face{position:absolute; inset:clamp(20px,5vw,34px) 12px clamp(24px,6vw,38px); display:flex; align-items:center; justify-content:center; font-family:'Press Start 2P'; font-size:clamp(26px,8vw,44px); color:var(--cardaccent); text-shadow:0 0 16px var(--cardaccent);}
+.card.royal{background:linear-gradient(160deg,#1a0b22,#08040f);}
+.card.royal .face{position:absolute; inset:clamp(20px,5vw,34px) 12px clamp(24px,6vw,38px); overflow:hidden;}
+.boss-float{animation:bossFloat 3.6s ease-in-out infinite;}
+.royal-letter{display:flex;align-items:center;justify-content:center;width:100%;height:100%;font-family:'Cinzel Decorative',serif;font-weight:700;font-size:clamp(42px,11vw,68px);padding-right:6px;animation:bossFloat 3.6s ease-in-out infinite,eyePulse 2.1s ease-in-out infinite;}
+.eye-pulse{filter:drop-shadow(0 0 4px var(--cardaccent)); animation:eyePulse 2.1s ease-in-out infinite;}
+.gem-pulse{filter:drop-shadow(0 0 5px var(--cardaccent)); animation:eyePulse 1.8s ease-in-out infinite;}
+.gem-pulse2{filter:drop-shadow(0 0 3px var(--cardaccent)); animation:eyePulse 1.8s ease-in-out infinite .9s;}
+@keyframes bossFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes eyePulse{0%,100%{opacity:.45}55%{opacity:1}}
+.royal-portrait{width:100%;height:100%;object-fit:contain;display:block;image-rendering:pixelated;animation:bossFloat 3.6s ease-in-out infinite,royalGlow 2.1s ease-in-out infinite;}
+@keyframes royalGlow{
+  0%,100%{filter:drop-shadow(0 0 4px var(--cardaccent)) drop-shadow(0 0 10px var(--cardaccent))}
+  50%{filter:drop-shadow(0 0 10px var(--cardaccent)) drop-shadow(0 0 24px var(--cardaccent))}
+}
 .card.royal .hpchip{position:absolute; top:6px; right:7px; font-family:'Press Start 2P'; font-size:clamp(7px,2vw,11px); color:var(--blood); text-shadow:0 0 8px var(--blood);}
 .card.gun{background:linear-gradient(160deg,#0f2230,#06121b);}
 .card.dying{animation:dying .55s ease forwards; pointer-events:none;}
@@ -144,15 +156,15 @@ body{background:#05050c; color:var(--ink); font-family:'VT323', ui-monospace, mo
 /* sprite-wrap handles rotation toward cards; sprite handles bob/recoil */
 .hand .sprite-wrap{position:absolute; bottom:0; transform-origin:bottom center;}
 /* Fists: inward tilt */
-.hand.left  .sprite-wrap.fist-hand{transform:rotate(46deg);  width:clamp(100px,19vw,150px);}
-.hand.right .sprite-wrap.fist-hand{transform:rotate(-46deg); width:clamp(100px,19vw,150px);}
+.hand.left  .sprite-wrap.fist-hand{transform:rotate(46deg);  width:clamp(110px,21vw,170px);}
+.hand.right .sprite-wrap.fist-hand{transform:rotate(-46deg); width:clamp(110px,21vw,170px);}
 /* Guns: angled so barrel points toward cards */
-.hand.left  .sprite-wrap.gun-hand{transform:rotate(28deg);  width:clamp(110px,21vw,165px);}
-.hand.right .sprite-wrap.gun-hand{transform:rotate(-28deg); width:clamp(110px,21vw,165px);}
+.hand.left  .sprite-wrap.gun-hand{transform:rotate(28deg);  width:clamp(120px,23vw,185px);}
+.hand.right .sprite-wrap.gun-hand{transform:rotate(-28deg); width:clamp(120px,23vw,185px);}
 /* Ammo: slightly angled */
-.hand .ammo-wrap{position:absolute; bottom:0; width:clamp(115px,21vw,165px); transform-origin:bottom center;}
-.hand.left .ammo-wrap{transform:rotate(-12deg);}
-.hand.right .ammo-wrap{transform:rotate(12deg);}
+.hand .ammo-wrap{position:absolute; bottom:0; width:clamp(128px,23vw,182px); transform-origin:bottom center;}
+.hand.left .ammo-wrap{transform:translateX(14px) rotate(-12deg);}
+.hand.right .ammo-wrap{transform:translateX(-14px) rotate(12deg);}
 .hand .sprite{display:block; width:100%; height:auto; filter:drop-shadow(0 -3px 8px rgba(0,0,0,.6)); transform-origin:bottom center; animation:bob 3.4s ease-in-out infinite;}
 .hand.right .sprite{animation-delay:-1.7s;}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
@@ -160,6 +172,10 @@ body{background:#05050c; color:var(--ink); font-family:'VT323', ui-monospace, mo
 .hand.right.recoil .sprite{animation:recoilR .22s ease;}
 @keyframes recoilL{0%{transform:translateY(0) rotate(0)}28%{transform:translate(-4px,12px) rotate(-7deg)}100%{transform:none}}
 @keyframes recoilR{0%{transform:translateY(0) rotate(0)}28%{transform:translate(4px,12px) rotate(7deg)}100%{transform:none}}
+@keyframes punchL{0%{transform:translateY(0) rotate(0)}20%{transform:translate(18px,-90px) rotate(-18deg)}55%{transform:translate(14px,-70px) rotate(-12deg)}100%{transform:none}}
+@keyframes punchR{0%{transform:translateY(0) rotate(0)}20%{transform:translate(18px,-90px) rotate(-18deg)}55%{transform:translate(14px,-70px) rotate(-12deg)}100%{transform:none}}
+.hand.left.punch .sprite{animation:punchL .38s cubic-bezier(.2,1.4,.5,1);}
+.hand.right.punch .sprite{animation:punchR .38s cubic-bezier(.2,1.4,.5,1);}
 .ammoTag{display:inline-block; font-family:'Press Start 2P'; font-size:9px; color:#030e06; background:var(--hud); padding:2px 6px; border:2px solid #000; border-radius:3px; margin-top:3px; box-shadow:0 2px 0 #0a3b22; vertical-align:middle;}
 
 #floatlayer{position:absolute; inset:0; z-index:45; pointer-events:none;}
@@ -211,10 +227,10 @@ body{background:#05050c; color:var(--ink); font-family:'VT323', ui-monospace, mo
 }
 /* desktop: use the bigger canvas */
 @media(min-width:820px) and (min-height:720px){
-  .card{width:166px; height:240px;} .cards{min-height:250px; gap:20px;}
-  .card .pip{font-size:80px;} .card.royal .face{font-size:54px;} .card .ctype{font-size:19px;}
+  .card{width:188px; height:272px;} .cards{min-height:285px; gap:20px;}
+  .card .pip{font-size:90px;} .card.royal .face{font-size:60px;} .card .ctype{font-size:21px;}
   .hint{font-size:23px;} .roomlabel{font-size:12px;} .cleartrack{font-size:24px;}
-  #hands{height:210px;} .hand{height:210px;}
+  #hands{height:240px;} .hand{height:240px;}
   .btn{font-size:10px; padding:11px 13px;} .btn .d{font-size:18px;}
   .sector{font-size:11px;} .killcount{font-size:13px;} .armorReadout .anum{font-size:23px;}
   .chip{font-size:8px; padding:2px 5px;} .tb-label{font-size:7px;}
@@ -398,6 +414,107 @@ let sectorIdx=-1;
 function hx(h){h=h.replace('#',''); return [parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)];}
 function rgba(c,a){return `rgba(${c[0]|0},${c[1]|0},${c[2]|0},${a})`;}
 const BG={c:null,x:null,w:0,h:0,scroll:0,embers:[],last:0};
+
+/* ---- BUILDING SILHOUETTES (perspective, zoom toward viewer) ---- */
+function bldgRng(seed){ let s=(seed|0)+1; return ()=>{ s=(s*16807)%2147483647; return s/2147483647; }; }
+
+function cloudDraw(ctx,w,h,glow,scroll){
+  const vy=h*0.42;
+  const NC=20;
+  for(let i=0;i<NC;i++){
+    const rng=bldgRng(i*31+7);
+    const speed=0.003+rng()*0.003;
+    const cx=((rng()*1.6-0.3+scroll*speed)%1.6-0.3)*w;
+    const cy=vy*(0.08+rng()*0.72);
+    const rx=w*(0.08+rng()*0.13), ry=rx*(0.30+rng()*0.20);
+    const a=0.18+rng()*0.22;
+    ctx.save();
+    ctx.globalCompositeOperation='lighter';
+    // main lobe
+    const gr=ctx.createRadialGradient(cx,cy,0,cx,cy,rx);
+    gr.addColorStop(0,rgba(glow,a)); gr.addColorStop(0.5,rgba(glow,a*0.4)); gr.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.fillStyle=gr;
+    ctx.beginPath(); ctx.ellipse(cx,cy,rx,ry,0,0,Math.PI*2); ctx.fill();
+    // second lobe
+    const cx2=cx+rx*0.55, cy2=cy-ry*0.35, rx2=rx*0.65;
+    const gr2=ctx.createRadialGradient(cx2,cy2,0,cx2,cy2,rx2);
+    gr2.addColorStop(0,rgba(glow,a*0.6)); gr2.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.fillStyle=gr2;
+    ctx.beginPath(); ctx.ellipse(cx2,cy2,rx2,ry*0.65,0,0,Math.PI*2); ctx.fill();
+    // third lobe
+    const cx3=cx-rx*0.45, cy3=cy-ry*0.2, rx3=rx*0.5;
+    const gr3=ctx.createRadialGradient(cx3,cy3,0,cx3,cy3,rx3);
+    gr3.addColorStop(0,rgba(glow,a*0.5)); gr3.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.fillStyle=gr3;
+    ctx.beginPath(); ctx.ellipse(cx3,cy3,rx3,ry*0.55,0,0,Math.PI*2); ctx.fill();
+    ctx.restore();
+  }
+}
+
+function bldgDraw(ctx,w,h,glow,scroll){
+  const si=Math.max(0,sectorIdx);
+  const vy=h*0.42, vx=w/2;
+  const N=22;
+  const slots=[];
+  for(let i=0;i<N;i++) slots.push({i,t:((i/N+scroll*0.05)%1)});
+  slots.sort((a,b)=>a.t-b.t);
+  for(const {i,t} of slots){
+    if(t<0.03) continue;
+    const p=t*t;
+    const rng=bldgRng(si*97+i*13);
+    const bwFrac=0.13+rng()*0.22;
+    const bhFrac=0.55+rng()*0.50;
+    const scatter=rng()*0.08; // small lateral scatter for variety
+    const winSeed=rng();
+    const bW=bwFrac*w*p, bH=bhFrac*(h-vy)*p;
+    const alpha=Math.min(1,t*2.5)*Math.min(1,(1-t)*6);
+    for(const side of [-1,1]){
+      const wallX=vx+side*((w*0.30+scatter*w)*p);
+      const groundY=vy+(h-vy)*p;
+      const bx=side===-1?wallX-bW:wallX;
+      const by=groundY-bH;
+      if(bW<2||by+bH<vy*0.6) continue;
+      // 3D depth offset — side face points inward toward vanishing point
+      const sdx=-side*bW*0.28, sdy=-bH*0.10;
+      const topY=Math.max(by,0), botY=Math.min(by+bH,h);
+      const topOffY=Math.max(by+sdy,0);
+      // inner x edge (the face that points toward the center)
+      const sx=side===1?bx:bx+bW;
+      // top face
+      ctx.beginPath();
+      ctx.moveTo(bx,topY); ctx.lineTo(bx+bW,topY);
+      ctx.lineTo(bx+bW+sdx,topOffY); ctx.lineTo(bx+sdx,topOffY);
+      ctx.closePath();
+      ctx.fillStyle=`rgba(18,24,42,${0.90*alpha})`; ctx.fill();
+      // side face (darker — facing away from light)
+      ctx.beginPath();
+      ctx.moveTo(sx,topY); ctx.lineTo(sx+sdx,topOffY);
+      ctx.lineTo(sx+sdx,Math.min(topOffY+bH,h)); ctx.lineTo(sx,botY);
+      ctx.closePath();
+      ctx.fillStyle=`rgba(3,4,10,${0.95*alpha})`; ctx.fill();
+      // front face
+      ctx.fillStyle=`rgba(6,8,16,${0.92*alpha})`;
+      ctx.fillRect(bx,topY,bW,botY-topY);
+      // front windows
+      const cols=Math.max(1,Math.round(bW/10));
+      const wrows=Math.max(1,Math.round(bH/13));
+      const ws=Math.max(1,p*5);
+      const pulse=0.38+0.48*Math.sin(scroll*1.2+winSeed*6.28+i*0.8);
+      ctx.fillStyle=rgba(glow,Math.max(0,pulse*alpha*0.65));
+      for(let r=0;r<wrows;r++) for(let c=0;c<cols;c++){
+        const wx=bx+(c+0.3)*bW/cols, wy=by+(r+0.25)*bH/wrows;
+        if(wy>topY&&wy+ws<h) ctx.fillRect(wx,wy,ws,ws*1.5);
+      }
+      // side face windows (dimmer)
+      const srows=Math.max(1,Math.round(bH/20));
+      ctx.fillStyle=rgba(glow,Math.max(0,pulse*alpha*0.25));
+      for(let r=0;r<srows;r++){
+        const wx2=sx+sdx*0.5, wy2=topOffY+(r+0.3)*bH/srows;
+        if(wy2>0&&wy2+ws<h) ctx.fillRect(wx2-ws*0.4,wy2,ws*0.6,ws);
+      }
+    }
+  }
+}
 let BGcur={base:hx(SECTORS[0].base),glow:hx(SECTORS[0].glow)};
 let BGtgt={base:hx(SECTORS[0].base),glow:hx(SECTORS[0].glow)};
 function setSector(i,announce){
@@ -420,6 +537,10 @@ function bgDraw(dt){
   // vanishing glow
   const rg=x.createRadialGradient(w/2,vy,4,w/2,vy,h*0.6); rg.addColorStop(0,rgba(glow,0.5)); rg.addColorStop(1,rgba(glow,0));
   x.fillStyle=rg; x.fillRect(0,0,w,h);
+  // clouds in sky area
+  cloudDraw(x,w,h,glow,BG.scroll);
+  // city buildings on left/right sides
+  bldgDraw(x,w,h,glow,BG.scroll);
   x.save(); x.globalCompositeOperation='lighter'; x.lineWidth=1;
   // converging corridor lines (floor + ceiling)
   const N=15, spread=w*0.92;
@@ -538,10 +659,10 @@ function resolveKill(gun, ammo, throwIt, royal){
   if(throwIt && royal.kind==='K' && CFG.KING_THROW_BONUS>0 && (!CFG.KING_THROW_MATCHED_ONLY||matched)){ mitig+=CFG.KING_THROW_BONUS; bonus=true; }
   const pen=matched?0:CFG.MISMATCH_PEN;
   let hpDelta=-(royal.val-mitig+pen);
-  if(matched && !joker && gun.suit===ammo.suit && ammo.suit===royal.suit) hpDelta+=CFG.SAME_SUIT_HEAL;
-  if(joker && CFG.JOKER_HEAL && ammo.suit===royal.suit) hpDelta+=CFG.SAME_SUIT_HEAL;
+  const suitHeal = (!throwIt && matched && !joker && gun.suit===ammo.suit && ammo.suit===royal.suit) ? CFG.SAME_SUIT_HEAL
+                 : (!throwIt && joker && CFG.JOKER_HEAL && ammo.suit===royal.suit) ? CFG.SAME_SUIT_HEAL : 0;
   let after = throwIt?'gone' : (matched?((joker&&!CFG.JOKER_REUSABLE)?'gone':'empty'):'gone');
-  return {hpDelta, after, matched, bonus};
+  return {hpDelta, suitHeal, after, matched, bonus};
 }
 
 /* =============== RENDER =============== */
@@ -566,9 +687,13 @@ function renderTrophies(){
     const c=g.kind==='joker'?'#fff':col(g.suit), lbl=g.kind==='joker'?'★':'A'+SUIT[g.suit].sym;
     m.style.color=c; m.textContent=lbl; gr.appendChild(m); });
 }
+function royalSVG(kind, accentColor){
+  return `<span class="royal-letter" style="color:${accentColor};text-shadow:0 0 18px ${accentColor},0 0 40px ${accentColor}">${kind}</span>`;
+}
+
 function cardInner(c){
   let h=`<span class="corner tl">${rankLabel(c)}${c.suit?SUIT[c.suit].sym:''}</span><span class="corner br">${rankLabel(c)}${c.suit?SUIT[c.suit].sym:''}</span>`;
-  if(c.type==='royal') h+=`<span class="hpchip">${c.val} STR</span><div class="face">${c.kind}</div><div class="ctype">${SUIT[c.suit].name} ${({J:'JACK',Q:'QUEEN',K:'KING'})[c.kind]}</div><div class="slash"></div>`;
+  if(c.type==='royal') h+=`<span class="hpchip">${c.val} STR</span><div class="face">${royalSVG(c.kind, cardAccent(c))}</div><div class="ctype">${SUIT[c.suit].name} ${({J:'JACK',Q:'QUEEN',K:'KING'})[c.kind]}</div><div class="slash"></div>`;
   else if(c.type==='ammo') h+=`<div class="pip">${SUIT[c.suit].sym}</div><div class="ctype">${c.val} ${SUIT[c.suit].name} AMMO</div><div class="slash"></div>`;
   else if(c.type==='ace') h+=`<div class="pip">⌖</div><div class="ctype">${SUIT[c.suit].name} GUN</div><div class="slash"></div>`;
   else h+=`<div class="pip" style="color:#fff;text-shadow:0 0 12px #fff">★</div><div class="ctype">WILD GUN</div><div class="slash"></div>`;
@@ -834,6 +959,7 @@ function armorWord(h){ return h>0?`+${h} ARMOR`:(h===0?`\u00b10 ARMOR`:`\u2212${
 function cls(h){ return h>0?'heal':(h<=-12?'dmg':(h<0?'warn':'ghost')); }
 function renderActions(){
   const acts=document.getElementById('acts'), hint=document.getElementById('hint'); acts.innerHTML='';
+  document.getElementById('actionbar').style.visibility='visible';
   if(G.over) return;
   if(G.cleared>=G.needed){ hint.textContent='Room clear. Pushing in...'; return; }
   const r=G.room.find(x=>x.key===G.sel);
@@ -841,14 +967,15 @@ function renderActions(){
   const c=r.card;
   const add=(label,detail,result,k,fn)=>{ const b=document.createElement('button'); b.className='btn '+(k||'');
     let html=label; if(detail) html+=`<span class="d">${detail}</span>`; if(result) html+=`<span class="res">${result}</span>`;
-    b.innerHTML=html; b.onclick=fn; acts.appendChild(b); };
+    b.innerHTML=html; b.onclick=()=>{ document.getElementById('actionbar').style.visibility='hidden'; fn(); }; acts.appendChild(b); };
   if(c.type==='royal'){
     const rname=({J:'JACK',Q:'QUEEN',K:'KING'})[c.kind];
     hint.innerHTML=`<b style="color:${col(c.suit)}">${SUIT[c.suit].name} ${rname}</b> &middot; strength ${c.val}. Take it down \u2014 leftover strength hits your armor.`;
     loadedGuns().forEach(({s,i})=>{
       const fire=resolveKill(s,s.ammo,false,c), thr=resolveKill(s,s.ammo,true,c);
       const gunStr=s.suit==null?'WILD':`A${SUIT[s.suit].sym}`, ammoStr=`${s.ammo.val}${SUIT[s.ammo.suit].sym}`;
-      add('FIRE', `${gunStr}+${ammoStr}${fire.matched?'':' OFF-SUIT'}`, `${armorWord(fire.hpDelta)} \u00b7 ${fire.after==='gone'?'GUN LOST':'GUN KEPT'}`, cls(fire.hpDelta), ()=>doKill(i,false,r));
+      const fireRes=fire.suitHeal?`${armorWord(fire.hpDelta)} +${fire.suitHeal}HP \u2665 \u00b7 ${fire.after==='gone'?'GUN LOST':'GUN KEPT'}`:`${armorWord(fire.hpDelta)} \u00b7 ${fire.after==='gone'?'GUN LOST':'GUN KEPT'}`;
+      add('FIRE', `${gunStr}+${ammoStr}${fire.matched?'':' OFF-SUIT'}`, fireRes, fire.suitHeal?'heal':cls(fire.hpDelta), ()=>doKill(i,false,r));
       add('THROW', `${gunStr}+${ammoStr} hurled`, `${armorWord(thr.hpDelta)}${thr.bonus?' \u2620':''} \u00b7 GUN LOST`, cls(thr.hpDelta), ()=>doKill(i,true,r));
     });
     add('PUNCH', 'bare hands', armorWord(-c.val), 'dmg', ()=>doKillBare(r));
@@ -871,8 +998,8 @@ function renderActions(){
     const es=emptySlot();
     if(es>=0) add('GRAB','to a free hand',null,'ghost',()=>takeGun('place',es,r));
     G.slots.forEach((s,i)=>{ if(s&&s.type==='ammo' && (isJ || s.suit===c.suit)) add('GRAB+LOAD',`load your ${s.val}${SUIT[s.suit].sym}`,'\u2192 READY','heal',()=>takeGun('grabload',i,r)); });
-    G.slots.forEach((s,i)=>{ if(s&&((s.type==='ammo')||(s.type==='gun'&&!s.ammo))) add('TAKE',`drop ${s.type==='ammo'?s.val+SUIT[s.suit].sym:(s.suit==null?'WILD':SUIT[s.suit].sym)+' gun'}`,null,'warn',()=>takeGun('replace',i,r)); });
-    if(G.slots.every(s=>s&&s.type==='gun'&&s.ammo)) add('DISCARD','leave it behind',null,'ghost',()=>takeGun('discard',-1,r));
+    G.slots.forEach((s,i)=>{ if(s) { const lbl=s.type==='ammo'?`drop ${s.val}${SUIT[s.suit].sym}`:(s.suit==null?'WILD':SUIT[s.suit].sym)+' gun'+(s.ammo?` +${s.ammo.val}${SUIT[s.ammo.suit].sym} (lose ammo)`:''); add('SWAP',lbl,null,'warn',()=>takeGun('replace',i,r)); } });
+    add('DISCARD','leave it behind',null,'ghost',()=>takeGun('discard',-1,r));
   }
 }
 function spendGun(obj){ const kind=(obj.type==='joker'||(obj.type==='gun'&&obj.suit==null))?'joker':'ace'; G.spentGuns.push({kind, suit:(obj.suit==null?null:obj.suit), _pop:true}); }
@@ -883,14 +1010,29 @@ function redFlash(){ const r=document.getElementById('redflash'); r.classList.re
 function floatTxt(txt,c){ const l=document.getElementById('floatlayer'),f=document.createElement('div'); f.className='float'; f.style.color=c; f.textContent=txt; f.style.left=(40+Math.random()*20)+'%'; f.style.top='42%'; l.appendChild(f); setTimeout(()=>f.remove(),1000); }
 function applyHp(d){ G.hp+=d; if(d<0){ shakeScreen(); redFlash(); SFX.hurt(); floatTxt(d+'','#ff7081'); } else if(d>0){ SFX.heal(); floatTxt('+'+d,'#7af0a8'); } else floatTxt('0','#cfe9ff'); if(G.hp>CFG.START_HP)G.hp=CFG.START_HP; }
 
-function markCleared(entry){
-  entry.cleared=true; G.cleared++; G.sel=null;
+function markCleared(entry, isDiscard=false){
+  entry.cleared=true; G.cleared++; G.sel=null; G._wasDiscard=isDiscard;
   if(G.hp<=0) return endGame(false);
   if(G.kills>=12) return endGame(true);
   renderRoom(); renderHands(); renderTop(); renderTrophies(); renderActions();
   if(G.cleared>=G.needed){ G.busy=true; setTimeout(advance,640); }
 }
+function cowardTax(){
+  const royalsLeft=G.room.filter(r=>!r.cleared&&r.card.type==='royal');
+  if(!royalsLeft.length) return;
+  const bothLoaded=G.slots.filter(s=>s&&s.type==='gun'&&s.ammo).length>=2;
+  if(!bothLoaded) return;
+  const scale={J:2,Q:3,K:4};
+  royalsLeft.forEach(r=>{
+    const dmg=scale[r.card.kind]||2;
+    applyHp(-dmg);
+    floatTxt('COWARD -'+dmg,'#ff7081');
+  });
+}
+
 function advance(){
+  if(G._wasDiscard) cowardTax();
+  G._wasDiscard=false;
   G.room=G.room.filter(r=>!r.cleared);
   while(G.room.length<3 && G.deck.length) G.room.push(roomEntry(draw()));
   G.busy=false;
@@ -914,6 +1056,7 @@ function doKill(slotIdx, throwIt, entry){
     if(el){ el.classList.remove('hit'); el.classList.add('dying'); }
     fxFlash(dp.x,dp.y,col(royal.suit),50); fxDebris(dp.x,dp.y,col(royal.suit),14);
     SFX.slay(royal.suit); applyHp(res.hpDelta);
+    if(res.suitHeal) setTimeout(()=>applyHp(res.suitHeal), 320);
     royal._pop=true; G.slain.push(royal); G.kills++;
     setTimeout(()=>{ G.busy=false; markCleared(entry); },370);
   },300);
@@ -922,6 +1065,7 @@ function doKillBare(entry){
   if(G.busy||G.over)return; G.busy=true; const royal=entry.card; SFX.punch();
   const tp=cardPoint(entry); fxRing(tp.x,tp.y,'#ffffff',2,4); fxSparks(tp.x,tp.y,'#cfe9ff',8,4); shakeScreen();
   const el=cardEl(entry); if(el) el.classList.add('hit');
+  ['handL','handR'].forEach(id=>{ const h=document.getElementById(id); h.classList.remove('punch'); void h.offsetWidth; h.classList.add('punch'); setTimeout(()=>h.classList.remove('punch'),420); });
   setTimeout(()=>{
     const dp=cardPoint(entry); // capture before dying shifts the card
     if(el){ el.classList.remove('hit'); el.classList.add('dying'); }
@@ -939,7 +1083,7 @@ function takeAmmo(mode, slotIdx, entry){
   else if(mode==='upgrade'){ G.slots[slotIdx].ammo={suit:c.suit,val:c.val}; SFX.reload(); }
   else if(mode==='swap'){ G.slots[slotIdx]={type:'ammo',suit:c.suit,val:c.val}; SFX.pickup(); }
   else { SFX.pickup(); }
-  flyTake(entry); markCleared(entry);
+  flyTake(entry); markCleared(entry, mode==='discard');
 }
 function takeGun(mode, slotIdx, entry){
   if(G.busy||G.over)return; const c=entry.card; const isJ=c.type==='joker';
@@ -948,7 +1092,7 @@ function takeGun(mode, slotIdx, entry){
   else if(mode==='grabload'){ const a=G.slots[slotIdx]; gun.ammo={suit:a.suit,val:a.val}; G.slots[slotIdx]=gun; SFX.reload(); }
   else if(mode==='replace'){ const old=G.slots[slotIdx]; if(old&&old.type==='gun') spendGun(old); G.slots[slotIdx]=gun; SFX.pickup(); }
   else { spendGun(c); SFX.pickup(); }
-  flyTake(entry); markCleared(entry);
+  flyTake(entry); markCleared(entry, mode==='discard');
 }
 
 /* =============== END =============== */
